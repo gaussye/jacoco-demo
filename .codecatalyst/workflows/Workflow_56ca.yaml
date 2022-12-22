@@ -21,6 +21,8 @@ Actions:
         ReportNamePrefix: rpt
     Configuration:
       Steps:
+        - Run: pwd
+        - Run: mvn -v
         - Run: mvn clean compile test jacoco:report
     Compute:
-      Type: Lambda
+      Type: EC2
