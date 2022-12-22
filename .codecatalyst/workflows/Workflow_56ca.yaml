@@ -22,7 +22,7 @@ Actions:
     Configuration:
       Steps:
         - Run: mvn help:system
-        - Run: ls -la ~
+        - Run: ls -la ~/.m2
         - Run: mvn clean compile test jacoco:report
     Compute:
       Type: EC2
