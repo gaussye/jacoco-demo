@@ -23,12 +23,11 @@ Actions:
       Steps:
         - Run: mvn help:system
         - Run: ls -la ~/.m2
-        - Run: cd ~/.m2
         - Run: pwd
         - Run: mvn clean compile test jacoco:report
       Caching:
         FileCaching:
-          - Path: ~/.m2
+          - Path: /root/.m2
             KeyName: m2
     Compute:
       Type: EC2
