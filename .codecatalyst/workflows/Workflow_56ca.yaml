@@ -21,7 +21,8 @@ Actions:
         ReportNamePrefix: rpt
     Configuration:
       Steps:
-        - Run: ls ~/.m2
+        - Run: mvn help:system
+        - Run: ls -la ~
         - Run: mvn clean compile test jacoco:report
     Compute:
       Type: EC2
