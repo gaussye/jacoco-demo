@@ -23,7 +23,6 @@ Actions:
       Steps:
         - Run: mvn help:system
         - Run: ls -la ~/.m2
-        - Run: echo ${Secrets.dbpwd}
         - Run: mvn clean compile test jacoco:report
       Caching:
         FileCaching:
