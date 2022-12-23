@@ -30,3 +30,4 @@ Actions:
             KeyName: m2
     Compute:
       Type: EC2
+          
