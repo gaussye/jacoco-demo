@@ -21,7 +21,7 @@ Actions:
         ReportNamePrefix: rpt
     Configuration:
       Steps:
-        - Run: ip address
+        - Run: ifconfig
         - Run: ls -la ~/.m2
         - Run: mvn clean compile test jacoco:report
       Caching:
