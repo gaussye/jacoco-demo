@@ -49,3 +49,4 @@ Actions:
             KeyName: m2
     Compute:
       Type: EC2
+      Fleet: testing_fleet
