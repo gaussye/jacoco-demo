@@ -44,3 +44,18 @@ Actions:
             KeyName: m2
     Compute:
       Type: EC2
+  Build_41:
+    Identifier: aws/build@v1
+    Inputs:
+      Sources:
+        - WorkflowSource
+    Outputs:
+      AutoDiscoverReports:
+        Enabled: true
+        ReportNamePrefix: rpt
+    Configuration:
+      Steps:
+        - Run: mvn clean compile test jacoco:report
+    Compute:
+      Type: EC2
+      Fleet: Linux.x86-64.Large
