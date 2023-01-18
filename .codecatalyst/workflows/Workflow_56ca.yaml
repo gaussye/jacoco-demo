@@ -29,6 +29,7 @@ Actions:
             KeyName: m2
     Compute:
       Type: EC2
+      Fleet: Linux.x86-64.Large
   Build_40:
     Identifier: aws/build@v1
     Inputs:
