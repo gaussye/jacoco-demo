@@ -21,15 +21,10 @@ Actions:
         ReportNamePrefix: rpt
     Configuration:
       Steps:
-        - Run: ls -la ~/.m2
         - Run: mvn clean compile test jacoco:report
-      Caching:
-        FileCaching:
-          - Path: /root/.m2
-            KeyName: m2
     Compute:
-      Type: EC2
-      Fleet: testing_fleet
+      Type: Lambda
+      Fleet: Linux.x86-64.Large
   Build_40:
     Identifier: aws/build@v1
     Inputs:
@@ -49,4 +44,3 @@ Actions:
             KeyName: m2
     Compute:
       Type: EC2
-      Fleet: testing_fleet
