@@ -44,6 +44,7 @@ Actions:
             KeyName: m2
     Compute:
       Type: EC2
+      Fleet: testing_fleet
   Build_41:
     Identifier: aws/build@v1
     Inputs:
