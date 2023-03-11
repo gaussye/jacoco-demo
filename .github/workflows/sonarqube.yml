@@ -41,6 +41,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Build PWD
+        run: pwd
+      - name: Build lsla
+        run: ls -la
       - name: Analyze with SonarQube
 
         # You can pin the exact commit or the version.
