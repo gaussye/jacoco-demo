@@ -3,7 +3,6 @@ WORKDIR /app
 COPY src/ /app/src
 COPY pom.xml /app/pom.xml
 RUN ls -la /app
-RUN ping -c 10 repo.maven.apache.org
 RUN mvn clean package -Dmaven.test.skip=true
 
 FROM openjdk:8-jre-alpine
