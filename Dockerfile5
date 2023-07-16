@@ -2,7 +2,7 @@ FROM komljen/ubuntu
 MAINTAINER Alen Komljen <alen.komljen@live.com>
 
 RUN \
-  apt-get install --reinstall ca-certificates \
+  apt-get install --reinstall ca-certificates &&\
   add-apt-repository -y ppa:chris-lea/redis-server && \
   apt-get update && \
   apt-get -y install \
