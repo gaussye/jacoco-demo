@@ -4,7 +4,6 @@ COPY src/ /app/src
 COPY build.xml /app/build.xml
 COPY pom.xml /app/pom.xml
 RUN ls -la /app
-RUN ping -c 10 repo.maven.apache.org
 RUN mvn clean package -Dmaven.test.skip=true
 
 FROM openjdk:8-jre-alpine
