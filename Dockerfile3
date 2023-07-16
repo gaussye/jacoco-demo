@@ -1,15 +1,12 @@
 FROM komljen/ubuntu
 MAINTAINER Alen Komljen <alen.komljen@live.com>
 
-ENV JAVA_VERSION 7
+ENV RUBY_VERSION 1.9.3
+ENV PATH /usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN \
-  apt-get update && \
-  echo oracle-java${JAVA_VERSION}-installer shared/accepted-oracle-license-v1-1 select true \
-       | /usr/bin/debconf-set-selections && \
-  apt-get -y install \
-          oracle-java${JAVA_VERSION}-installer && \
-  rm -rf /var/lib/apt/lists/* && \
-  rm /var/cache/oracle-jdk${JAVA_VERSION}-installer/jdk-*.tar.gz
-
-RUN update-alternatives --display java
+  curl -sSL https://get.rvm.io \
+       | bash -s master --ruby=ruby-${RUBY_VERSION}
+RUN \
+  echo "source /usr/local/rvm/scripts/rvm" \
+       >> /etc/bash.bashrc
