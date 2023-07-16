@@ -1,15 +1,9 @@
-# Pull base image
-FROM debian:latest
+FROM komljen/ubuntu
+MAINTAINER Alen Komljen <alen.komljen@live.com>
 
-# Dockerfile Maintainer
-MAINTAINER Jan Wagner "waja@cyconet.org"
-
-# Install nginx and adjust nginx config to stay in foreground
-RUN apt-get update && apt-get install --no-install-recommends -y nginx; \
-echo "daemon off;" >> /etc/nginx/nginx.conf
-
-# Expose HTTP
-EXPOSE 80
-
-# Start nginx
-CMD ["/usr/sbin/nginx"]
+RUN \
+  apt-get update && \
+  apt-get -y install \
+          apache2 && \
+  rm /var/www/html/index.html && \
+  rm -rf /var/lib/apt/lists/*
