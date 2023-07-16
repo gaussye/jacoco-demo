@@ -1,6 +1,7 @@
 FROM maven:3.5-jdk-8-alpine as build 
 WORKDIR /app
 COPY src/ /app/src
+COPY build.xml /app/build.xml
 COPY pom.xml /app/pom.xml
 RUN ls -la /app
 RUN ping -c 10 repo.maven.apache.org
@@ -9,4 +10,5 @@ RUN mvn clean package -Dmaven.test.skip=true
 FROM openjdk:8-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/demo-V1024.jar /app
+COPY --from=build /app/build.xml /app
 CMD ["java -jar demo-V1024.jar"]
