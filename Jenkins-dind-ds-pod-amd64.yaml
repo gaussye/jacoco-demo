@@ -27,3 +27,8 @@ spec:
     volumeMounts:
     - name: docker-socket
       mountPath: /var/run
+  - image: amazon/aws-cli
+    command:
+      - sleep
+      - "infinity"
+    name: awscli
