@@ -10,21 +10,9 @@
                  }
               }
               steps {
-                container('docker') {
-                  sh 'ls'
-                }
-              }
-            }
-            
-          stage("Build for ARM64 platform") {
-              agent {
-                 kubernetes {
-                   yamlFile 'Jenkins-dind-ds-pod-arm64.yaml'
-                 }
-              }
-              steps {
-                container('docker') {
-                  sh 'ls'
+                container('awscli') {
+                  sh 'aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com'
+                  sh 'docker images'
                 }
               }
             }
