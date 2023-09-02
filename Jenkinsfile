@@ -1,4 +1,5 @@
   pipeline {
+    agent none
     stages {
       stage('Build'){
         parallel {
@@ -36,6 +37,11 @@
         }
       }
       stage('Manifest'){
+        agent {
+             kubernetes {
+               yamlFile 'Jenkins-dind-ds-pod-amd64.yaml'
+             }
+        }
         steps {
          sh 'docker manifest create 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:latest --amend 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:amd64 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:arm64'
          sh 'docker manifest push 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:latest'
