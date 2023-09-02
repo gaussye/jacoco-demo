@@ -11,6 +11,9 @@ spec:
   containers:
   - name: docker
     image: gaussye/docker-ds:20230902-01-arm64
+    env:
+    - name: DOCKER_CLI_EXPERIMENTAL
+      value: "enabled"
     resources:
       limits:
         cpu: 1000m
