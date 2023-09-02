@@ -11,7 +11,7 @@
               }
               steps {
                 container('awscli') {
-                  sh 'sleep 3600'
+                  sh 'sleep 300'
                 }
               }
             }
