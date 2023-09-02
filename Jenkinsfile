@@ -10,7 +10,7 @@
                  }
               }
               steps {
-                container('awscli') {
+                container('docker') {
                   sh 'sleep 300'
                 }
               }
