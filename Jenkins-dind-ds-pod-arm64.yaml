@@ -10,7 +10,7 @@ spec:
         path: /var/run 
   containers:
   - name: docker
-    image: gaussye/docker-ds:20230902-01
+    image: docker:19.03.1
     resources:
       limits:
         cpu: 1000m
