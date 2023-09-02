@@ -35,5 +35,11 @@
           }
         }
       }
+      stage('Manifest'){
+       agent any
+       sh 'docker manifest create 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:latest --amend 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:amd64 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:arm64'
+       sh 'docker manifest push 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:latest'
+       sh 'docker manifest inspect 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:latest'
+      }
     }
 }
