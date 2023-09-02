@@ -3,6 +3,7 @@
     stages {
       stage('Build'){
         parallel {
+          /**
           stage("Build for AMD64 platform") {
               agent {
                  kubernetes {
@@ -17,7 +18,7 @@
                   sh 'docker push 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:amd64'
                 }
               }
-            }
+            }**/
            stage("Build for ARM64 platform") {
               agent {
                  kubernetes {
