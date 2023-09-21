@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: nerdctl
-      image: gaussye/nerdctlrootless:latest
+      image: gaussye/nerdctl:20230921-01-arm64
       tty: true
       securityContext:
         privileged: true
