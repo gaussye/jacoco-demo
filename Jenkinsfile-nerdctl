@@ -3,6 +3,7 @@
     stages {
       stage('Build'){
         parallel {
+         /**
           stage("Build for AMD64 platform") {
               agent {
                  kubernetes {
@@ -15,7 +16,7 @@
                   sh 'nerdctl build -t 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:nerdctl-20230921-01-amd64 .'
                 }
               }
-            }
+            }**/
           stage("Build for ARM64 platform") {
               agent {
                  kubernetes {
