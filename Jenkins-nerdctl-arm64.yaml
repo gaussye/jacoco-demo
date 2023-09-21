@@ -5,6 +5,9 @@ metadata:
     app: nerdctl
   name: nerdctl
 spec:
+  serviceAccountName: jenkins-sa
+  nodeSelector:
+    kubernetes.io/arch: arm64
   containers:
     - name: nerdctl
       image: gaussye/nerdctl:20230921-01-arm64
