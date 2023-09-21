@@ -9,13 +9,6 @@ spec:
     - name: nerdctl
       image: gaussye/nerdctlrootless:latest
       tty: true
-      resources:
-        limits:
-          cpu: 3000m
-          memory: 5Gi
-        requests:
-          cpu: 3000m
-          memory: 5Gi
       securityContext:
         privileged: true
         runAsUser: 0
