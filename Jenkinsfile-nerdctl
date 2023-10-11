@@ -34,7 +34,7 @@
       stage('Manifest'){
         agent {
              kubernetes {
-               yamlFile 'Jenkins-manifest-tool-amd64.yaml'
+               yamlFile 'Jenkins-nerdctl-amd64.yaml'
              }
         }
         steps {
