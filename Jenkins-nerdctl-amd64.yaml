@@ -11,7 +11,6 @@ spec:
   containers:
     - name: nerdctl
       image: gaussye/nerdctl-full:latest
-      command:
       tty: true
       securityContext:
         privileged: true
