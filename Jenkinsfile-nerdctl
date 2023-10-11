@@ -11,8 +11,9 @@
               }
               steps {
                 container('nerdctl') {
-          
-                  sh 'nerdctl build -t 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:nerdctl-20230921-01-amd64 .'
+                   sh 'aws ecr get-login-password --region ap-southeast-1 | nerdctl login --username AWS --password-stdin 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com'
+                   sh 'nerdctl build -t 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:202310-01-amd64 .'
+                   sh 'nerdctl push 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:202310-01-amd64'
                 }
               }
             }
@@ -24,7 +25,9 @@
               }
               steps {
                 container('nerdctl') {
-                   sh 'nerdctl build -t 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:nerdctl-20230921-01-arm64 .'
+                   sh 'aws ecr get-login-password --region ap-southeast-1 | nerdctl login --username AWS --password-stdin 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com'
+                   sh 'nerdctl build -t 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:202310-01-arm64 .'
+                   sh 'nerdctl push 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:202310-01-arm64'
                 }
               }
           }
@@ -40,7 +43,7 @@
         steps {
           container('nerdctl') {
              sh 'aws ecr get-login-password --region ap-southeast-1 | nerdctl login --username AWS --password-stdin 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com'
-             sh './manifest-tool push from-args --platforms linux/amd64,linux/arm64 --template 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:20230921-01-ARCHVARIANT --target 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:20230921-01'
+             sh 'manifest-tool push from-args --platforms linux/amd64,linux/arm64 --template 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:202310-01-ARCHVARIANT --target 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:202310-01'
 
           }
         }
