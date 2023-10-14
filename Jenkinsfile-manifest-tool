@@ -12,8 +12,8 @@ pipeline {
              sh 'docker-credential-ecr-login list'
          
              sh 'export repoid=$(jq .Registries /root/.ecr/cache.json  | jq keys[0])'
-             sh 'export AuthorizationToken=$(cat /root/.ecr/cache.json |  jq --arg repoid $repoid .Registries.$repoid.AuthorizationToken)'
-             sh 'export ProxyEndpoint=$(cat /root/.ecr/cache.json |  jq --arg repoid $repoid .Registries.$repoid.ProxyEndpoint)'
+             sh 'export AuthorizationToken=$(jq --arg repoid $repoid .Registries.$repoid.AuthorizationToken /root/.ecr/cache.json)'
+             sh 'export ProxyEndpoint=$(jq --arg repoid $repoid .Registries.$repoid.ProxyEndpoint /root/.ecr/cache.json)'
              sh 'mkdir /root/.docker'
              sh '''
              cat<<EOF> /root/.docker/config.json
