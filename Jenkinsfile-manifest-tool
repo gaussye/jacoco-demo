@@ -10,6 +10,7 @@ pipeline {
         steps {
           container('manifest-tool') {
              sh 'docker-credential-ecr-login list'
+             sh 'cat /root/.ecr/cache.json'
              sh 'repoid=$(jq '.Registries' /root/.ecr/cache.json  | jq keys[0])'
              sh 'AuthorizationToken=$(cat /root/.ecr/cache.json |  jq --arg repoid "$repoid" .Registries.$repoid.AuthorizationToken)'
              sh 'ProxyEndpoint=$(cat /root/.ecr/cache.json |  jq --arg repoid "$repoid" .Registries.$repoid.ProxyEndpoint)'
