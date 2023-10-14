@@ -1,0 +1,31 @@
+pipeline {
+    agent none
+    stages {
+      stage('Manifest'){
+        agent {
+             kubernetes {
+               yamlFile 'Jenkins-manifest-tool.yaml'
+             }
+        }
+        steps {
+          container('kaniko') {
+             sh 'export repoid=$(jq '.Registries' /root/.ecr/cache.json  | jq keys[0])'
+             sh 'export AuthorizationToken=$(cat /root/.ecr/cache.json |  jq --arg repoid "$repoid" .Registries.$repoid.AuthorizationToken)'
+             sh 'export ProxyEndpoint=$(cat /root/.ecr/cache.json |  jq --arg repoid "$repoid" .Registries.$repoid.ProxyEndpoint)'
+             sh '''
+             cat<<EOF> /root/.docker/config.json
+                {
+                       "auths": {
+                               $ProxyEndpoint: {
+                                        "auth": $AuthorizationToken
+                               }
+                       }
+                }
+                EOF
+             '''
+             sh '/kaniko/manifest-tool push from-args --platforms linux/amd64,linux/arm64 --template 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:202310-02-ARCHVARIANT --target 899578970796.dkr.ecr.ap-southeast-1.amazonaws.com/java-demo:202310-02'
+          }
+        }
+      }
+    }
+}
