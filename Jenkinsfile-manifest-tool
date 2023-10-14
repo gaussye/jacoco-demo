@@ -8,7 +8,7 @@ pipeline {
              }
         }
         steps {
-          container('kaniko') {
+          container('manifest-tool') {
              sh 'export repoid=$(jq '.Registries' /root/.ecr/cache.json  | jq keys[0])'
              sh 'export AuthorizationToken=$(cat /root/.ecr/cache.json |  jq --arg repoid "$repoid" .Registries.$repoid.AuthorizationToken)'
              sh 'export ProxyEndpoint=$(cat /root/.ecr/cache.json |  jq --arg repoid "$repoid" .Registries.$repoid.ProxyEndpoint)'
