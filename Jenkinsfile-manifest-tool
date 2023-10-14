@@ -10,12 +10,12 @@ pipeline {
         steps {
           container('manifest-tool') {
              sh 'docker-credential-ecr-login list'
-         
-             sh 'export repoid=$(jq .Registries /root/.ecr/cache.json  | jq keys[0])'
-             sh 'export AuthorizationToken=$(jq --arg repoid $repoid .Registries.$repoid.AuthorizationToken /root/.ecr/cache.json)'
-             sh 'export ProxyEndpoint=$(jq --arg repoid $repoid .Registries.$repoid.ProxyEndpoint /root/.ecr/cache.json)'
-             sh 'mkdir /root/.docker'
+
              sh '''
+             export repoid=$(jq .Registries /root/.ecr/cache.json  | jq keys[0])
+             export AuthorizationToken=$(jq --arg repoid $repoid .Registries.$repoid.AuthorizationToken /root/.ecr/cache.json)
+             export ProxyEndpoint=$(jq --arg repoid $repoid .Registries.$repoid.ProxyEndpoint /root/.ecr/cache.json)
+             mkdir /root/.docker
              cat<<EOF> /root/.docker/config.json
                 {
                        "auths": {
