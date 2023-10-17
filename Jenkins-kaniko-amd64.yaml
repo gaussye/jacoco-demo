@@ -8,7 +8,7 @@ spec:
     kubernetes.io/arch: amd64
   containers:
     - name: kaniko
-      image: gaussye/kaniko-full:latest
+      image: gcr.io/kaniko-project/executor:debug
       command:
         - sleep
       args:
