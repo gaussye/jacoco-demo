@@ -11,10 +11,12 @@ pipeline {
               }
               steps {
                 container('kaniko') {
+                   sh 'chmod 700 build-kaniko.sh'
                    sh './build-kaniko.sh'
               }
             }
         }
       }
     }
+}
 }
