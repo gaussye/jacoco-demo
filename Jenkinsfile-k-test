@@ -11,8 +11,7 @@ pipeline {
               }
               steps {
                 container('kaniko') {
-                   sh '/kaniko/executor --context `pwd` --dockerfile `pwd`/Dockerfile --destination 899578970796.dkr.ecr.us-east-1.amazonaws.com/java-demo:202310-02-amd64'
-                }
+                   sh './build-kaniko.sh'
               }
             }
         }
