@@ -1,0 +1,21 @@
+pipeline {
+    agent none
+    stages {
+      stage('Build'){
+        parallel {
+          stage("Build for AMD64 platform") {
+              agent {
+                 kubernetes {
+                   yamlFile 'Jenkins-kaniko-amd64.yaml'
+                 }
+              }
+              steps {
+                container('kaniko') {
+                   sh '/kaniko/executor --context `pwd` --dockerfile `pwd`/Dockerfile --destination 899578970796.dkr.ecr.us-east-1.amazonaws.com/java-demo:202310-02-amd64'
+                }
+              }
+            }
+        }
+      }
+    }
+}
