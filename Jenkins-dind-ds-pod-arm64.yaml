@@ -14,13 +14,6 @@ spec:
     env:
     - name: DOCKER_CLI_EXPERIMENTAL
       value: "enabled"
-    resources:
-      limits:
-        cpu: 1000m
-        memory: 1Gi
-      requests:
-        cpu: 1000m
-        memory: 1Gi
     readinessProbe:
       exec:
         command: [sh, -c, "ls -S /var/run/docker.sock"]
