@@ -1,0 +1,22 @@
+pipeline {
+    agent none
+    stages {
+      stage('Build'){
+        parallel {
+          stage("Build for AMD64 platform") {
+              agent {
+                 kubernetes {
+                   yamlFile 'Jenkins-nerdctl-amd64.yaml'
+                 }
+              }
+              steps {
+                container('kaniko') {
+                   sh 'chmod 700 build-nerdctl.sh'
+                   sh './build-nerdctl.sh'
+              }
+            }
+        }
+      }
+    }
+  }
+}
