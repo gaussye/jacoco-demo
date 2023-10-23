@@ -10,7 +10,7 @@ pipeline {
                  }
               }
               steps {
-                container('kaniko') {
+                container('nerdctl') {
                    sh 'chmod 700 build-nerdctl.sh'
                    sh './build-nerdctl.sh'
               }
